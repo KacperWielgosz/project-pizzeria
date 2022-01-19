@@ -87,9 +87,9 @@
 
       thisProduct.initAccordion();
 
-      initOrderForm()
+      //initOrderForm()
 
-      processOrder()
+      //processOrder()
     };
     renderInMenu(){
       const thisProduct = this;
@@ -110,6 +110,8 @@
     }
     */
     initAccordion(){
+      console.log('initAccordion')
+
       const thisProduct = this;
       /* find the clickable trigger (the element that should react to clicking) */
       const clickableTrigger = document.querySelector(select.menuProduct.clickable);
@@ -119,13 +121,16 @@
         event.preventDefault();
       /* find active product (product that has active class) */
         const activeProduct = document.querySelector(classNames.menuProduct.wrapperActive);
-      /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if (thisProduct.element = activeProduct) {
+      /* if there is active product and it's not thisProduct.element, remove class active from it
+        if (thisProduct.element === activeProduct) {
           console.log('activeProduct', activeProduct);
         } else {
           activeProduct.classList.remove(classNames.menuProduct.wrapperActive)
         };
       /* toggle active class on thisProduct.element */
+      if (activeProduct && thisProduct.element !== activeProduct) {
+        activeProduct.classList.remove(classNames.menuProduct.wrapperActive)
+      }
       thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive)
       });
      };
@@ -172,7 +177,7 @@
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
-          // 
+          //
         }
       }
 
