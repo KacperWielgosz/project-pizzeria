@@ -87,9 +87,9 @@
 
       thisProduct.initAccordion();
 
-      //initOrderForm()
+      thisProduct.initOrderForm();
 
-      //processOrder()
+      thisProduct.processOrder();
     };
     renderInMenu(){
       const thisProduct = this;
@@ -98,7 +98,7 @@
       const menuContainer = document.querySelector(select.containerOf.menu);
       menuContainer.appendChild(thisProduct.element);
     };
-    /*
+
     getElements(){
     const thisProduct = this;
 
@@ -108,19 +108,19 @@
     thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     }
-    */
+
     initAccordion(){
       console.log('initAccordion')
 
       const thisProduct = this;
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = document.querySelector(select.menuProduct.clickable);
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       /* START: add event listener to clickable trigger on event click */
       clickableTrigger.addEventListener('click', function(event) {
       /* prevent default action for event */
         event.preventDefault();
       /* find active product (product that has active class) */
-        const activeProduct = document.querySelector(classNames.menuProduct.wrapperActive);
+        const activeProduct = thisProduct.element.querySelector(classNames.menuProduct.wrapperActive);
       /* if there is active product and it's not thisProduct.element, remove class active from it
         if (thisProduct.element === activeProduct) {
           console.log('activeProduct', activeProduct);
@@ -134,24 +134,24 @@
       thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive)
       });
      };
-     /*
+
      initOrderForm(){
        const thisProduct = this;
 
        const formData = utils.serializeFormToObject(thisProduct.form);
        console.log('formData', formData);
-       thisProduct.form.addEventListener('submit', function(event){
+       thisProduct.element.querySelector(select.menuProduct.form).addEventListener('submit', function(event){
         event.preventDefault();
         thisProduct.processOrder();
         });
 
-        for(let input of thisProduct.formInputs){
+        for(let input of thisProduct.element.querySelectorAll(select.all.formInputs)){
           input.addEventListener('change', function(){
           thisProduct.processOrder();
           });
-        }
+        };
 
-        thisProduct.cartButton.addEventListener('click', function(event){
+        thisProduct.element.querySelector(select.menuProduct.cartButton).addEventListener('click', function(event){
           event.preventDefault();
           thisProduct.processOrder();
         });
@@ -176,16 +176,30 @@
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
-          //
-        }
+          //console.log(optionId, option);
+
+          console.log('optionId', optionId);
+          console.log('option.default', option.default);
+          console.log('option.price', option.price);
+          console.log('price', price);
+
+
       }
 
       // update calculated price in the HTML
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.element.querySelector(select.menuProduct.priceElem).innerHTML = price;
      };
-     */
+
   };
 
   app.init();
+}/*
+if (option.default === true) {
+  price = price;
+} else if (option.default === undefined) {
+  price = price;
+} else {
+  price = price - option.price
 }
+
+}*/
