@@ -280,7 +280,7 @@
       ) {
         thisWidget.value = newValue;
         thisWidget.announce();
-      }
+      }  
 
       thisWidget.input.value = thisWidget.value;
     }
