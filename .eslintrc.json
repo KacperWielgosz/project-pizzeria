@@ -14,7 +14,8 @@
             2
         ],
         "linebreak-style": [
-            "off"
+            "error",
+            "unix"
         ],
         "quotes": [
             "error",
@@ -28,8 +29,5 @@
         "no-console": [
             "off"
         ]
-    },
-    "globals": {
-      "Handlebars": false
     }
 }
