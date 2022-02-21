@@ -8,7 +8,7 @@ class Product {
     thisProduct.id = id;
     thisProduct.data = data;
     thisProduct.renderInMenu();
-    console.log('new Product', thisProduct);
+    //console.log('new Product', thisProduct);
     thisProduct.getElements();
     thisProduct.initAccordion();
     thisProduct.initOrderForm();
@@ -37,7 +37,7 @@ class Product {
   }
 
   initAccordion(){
-    console.log('initAccordion');
+    //console.log('initAccordion');
 
     const thisProduct = this;
     const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
@@ -77,7 +77,7 @@ class Product {
     const thisProduct = this;
 
     const formData = utils.serializeFormToObject(thisProduct.form);
-    console.log('formData', formData);
+    //console.log('formData', formData);
     let price = thisProduct.data.price;
 
     for(let paramId in thisProduct.data.params) {

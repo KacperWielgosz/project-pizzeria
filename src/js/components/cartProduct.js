@@ -17,7 +17,7 @@ class CartProduct{
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
 
-    console.log('thisCartProduct:', thisCartProduct);
+    //console.log('thisCartProduct:', thisCartProduct);
   }
 
   getData(){
@@ -31,7 +31,7 @@ class CartProduct{
       name: thisCartProduct.name,
       params: thisCartProduct.params,
     };
-    console.log('thisCartProduct.dataOf', thisCartProduct.dataOf);
+    //console.log('thisCartProduct.dataOf', thisCartProduct.dataOf);
     return thisCartProduct.dataOf;
   }
 

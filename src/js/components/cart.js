@@ -9,7 +9,7 @@ class Cart{
     thisCart.getElements(element);
     thisCart.initActions();
     //thisCart.add();
-    console.log('new Cart', thisCart);
+    //console.log('new Cart', thisCart);
   }
 
   getElements(element){
@@ -77,7 +77,7 @@ class Cart{
         return response.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
+        //console.log('parsedResponse', parsedResponse);
       });
   }
 
@@ -120,7 +120,7 @@ class Cart{
     const indexRemove = thisCart.products.indexOf(removedProduct);
     thisCart.products.splice(indexRemove, 1);
     removedProduct.dom.wrapper.remove();
-    console.log(removedProduct.dom.wrapper);
+    //console.log(removedProduct.dom.wrapper);
     thisCart.update();
   }
 }
