@@ -22,7 +22,7 @@ const app = {
       }
     }
 
-    thisApp.activatePage(pageMatchingHash)
+    thisApp.activatePage(pageMatchingHash);
 
     for (let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
@@ -86,10 +86,10 @@ const app = {
   },
 
   initBooking: function(){
-   const thisApp = this;
-   const bookElem = document.querySelector(select.containerOf.booking);
+    const thisApp = this;
+    const bookElem = document.querySelector(select.containerOf.booking);
 
-   thisApp.booking = new Booking(bookElem);
+    thisApp.booking = new Booking(bookElem);
   },
 
   init: function(){

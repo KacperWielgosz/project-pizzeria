@@ -15,7 +15,7 @@ class Cart{
   getElements(element){
     const thisCart = this;
     thisCart.dom = {};
-    thisCart.dom.wrapper = element;
+    thisCart.dom.wrapper = element; 
 
     thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = element.querySelector(select.cart.productList);

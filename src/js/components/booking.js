@@ -32,10 +32,10 @@ class Booking {
     thisBooking.hoursWidget = new AmountWidget(thisBooking.dom.hoursAmount);
 
     thisBooking.dom.peopleAmount.addEventListener('click', function(event){
-      console.log('people clicked')
+      //console.log('people clicked')
     });
     thisBooking.dom.hoursAmount.addEventListener('click', function(event){
-      console.log('hours clicked')
+      //console.log('hours clicked')
     });
   }
 }
