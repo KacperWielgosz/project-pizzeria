@@ -1,24 +1,34 @@
-class BaseWidget {
-  constructor(wrapperElement, initialValue) {
+class BaseWidget{
+  constructor(wrapperElement, initialValue){
     const thisWidget = this;
 
     thisWidget.dom = {};
     thisWidget.dom.wrapper = wrapperElement;
 
-    thisWidget.dom.value = initialValue;
+    thisWidget.correctValue = initialValue;
+  }
+
+  get value(){
+    const thisWidget = this;
+
+    return thisWidget.correctValue;
+  }
+
+  set value(value){
+    const thisWidget = this;
+
+    const newValue = thisWidget.parseValue(value);
+    if(newValue != thisWidget.correctValue && thisWidget.isValid(newValue)) {
+      thisWidget.correctValue = newValue;
+      thisWidget.announce();
+    }
+    thisWidget.renderValue();
   }
 
   setValue(value){
     const thisWidget = this;
-    const newValue = thisWidget.parseValue(value);
 
-    if(
-      thisWidget.value !== newValue
-      && !isNaN(newValue) && thisWidget.isValid(newValue)){
-      thisWidget.value = newValue;
-      thisWidget.announce();
-    }
-    thisWidget.rednerValue();
+    thisWidget.value = value;
   }
 
   parseValue(value){
@@ -26,7 +36,7 @@ class BaseWidget {
   }
 
   isValid(value){
-    return !isNaN(value)
+    return !isNaN(value);
   }
 
   renderValue(){
@@ -44,4 +54,4 @@ class BaseWidget {
   }
 }
 
-export default BaseWidget
+export default BaseWidget;
