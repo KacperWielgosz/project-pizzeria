@@ -2,6 +2,7 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/product.js';
 import Cart from './components/cart.js';
 import Booking from './components/booking.js';
+import Home from './components/home.js';
 
 const app = {
   initPages: function(){
@@ -9,6 +10,8 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+
+    thisApp.homeLinks = document.querySelectorAll(select.containerOf.homeLinks);
 
     const idFromHash = window.location.hash.replace('#/', '');
     thisApp.activatePage(idFromHash);
@@ -31,6 +34,7 @@ const app = {
         const id = clickedElement.getAttribute('href').replace('#', '');
         thisApp.activatePage(id);
         window.location.hash = '#/' + id;
+        console.log('pagechange');
       });
     }
   },
@@ -51,7 +55,6 @@ const app = {
 
   initMenu: function(){
     const thisApp = this;
-    //console.log('thisApp.data:', thisApp.data);
     for(let productData in thisApp.data.products){
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
@@ -67,11 +70,9 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        //console.log('parsedResponse', parsedResponse);
         thisApp.data.products = parsedResponse;
         thisApp.initMenu();
       });
-    //console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
 
   initCart: function(){
@@ -92,18 +93,20 @@ const app = {
     thisApp.booking = new Booking(bookElem);
   },
 
+  initHome: function(){
+    const thisApp = this;
+    const homeElement = document.querySelector(select.containerOf.home);
+
+    thisApp.home = new Home(homeElement);
+  },
+
   init: function(){
     const thisApp = this;
-    //console.log('*** App starting ***');
-    //console.log('thisApp:', thisApp);
-    //console.log('classNames:', classNames);
-    //console.log('settings:', settings);
-    //console.log('templates:', templates);
-    //console.log('cart:', Cart);
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initHome();
   },
 };
 
