@@ -1,5 +1,5 @@
 import {settings, select, classNames, templates} from '../settings.js';
-import CartProduct from '../components/cartProduct.js';
+import CartProduct from '../components/CartProduct.js';
 import utils from '../utils.js';
 
 class Cart{
@@ -15,7 +15,7 @@ class Cart{
   getElements(element){
     const thisCart = this;
     thisCart.dom = {};
-    thisCart.dom.wrapper = element; 
+    thisCart.dom.wrapper = element;
 
     thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = element.querySelector(select.cart.productList);
