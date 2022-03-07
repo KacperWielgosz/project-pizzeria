@@ -40,7 +40,6 @@ class Booking {
         endDateParam,
       ],
     };
-    console.log('params', params);
 
     const urls = {
       bookings:       settings.db.url + '/' + settings.db.bookings +
@@ -50,7 +49,6 @@ class Booking {
       eventsRepeat:   settings.db.url + '/' + settings.db.events +
                                         '?' + params.eventsRepeat.join('&'),
     };
-    console.log('url', urls);
     Promise.all([
       fetch(urls.bookings),
       fetch(urls.eventsCurrent),
@@ -67,9 +65,6 @@ class Booking {
         ]);
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
-        //console.log(bookings);
-        //console.log(eventsCurrent);
-        //console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent,eventsRepeat);
       });
   }
@@ -96,7 +91,6 @@ class Booking {
       thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
     }
 
-    console.log(thisBooking.booked);
     thisBooking.updateDOM();
   }
 
@@ -113,7 +107,6 @@ class Booking {
       }
       thisBooking.booked[date][hourBlock].push(table);
     }
-    //  console.log('hour', hour);
 
   }
 
@@ -125,23 +118,19 @@ class Booking {
 
     let allAvailable = false;
 
-    if(
-      typeof thisBooking.booked[thisBooking.date] === 'undefined'
-      ||
-      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined'
+    if(typeof thisBooking.booked[thisBooking.date] === 'undefined'
+      || typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined'
     ){
       allAvailable = true;
     }
 
     for (let table of thisBooking.dom.tables){
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-      if(!isNaN(tableId)){
+      if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
       }
-      if(
-        !allAvailable
-        &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+      if(!allAvailable
+        && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
       ){
         table.classList.add(classNames.booking.tableBooked);
       } else {
@@ -174,7 +163,8 @@ class Booking {
     thisBooking.dom.orderButton = document.querySelector(select.booking.button);
     thisBooking.dom.starters = document.querySelectorAll(select.booking.starters);
 
-
+    thisBooking.dom.dateInputValue = document.querySelector(select.widgets.datePicker.input);
+    thisBooking.dom.hourInputValue = document.querySelector(select.widgets.hourPicker.input);
   }
 
   initWidgets(){
@@ -210,13 +200,11 @@ class Booking {
     const clickedElement = event.target;
 
     if (clickedElement.classList.contains('table')
-    && !clickedElement.classList.contains('booked')
-    && !clickedElement.classList.contains(classNames.booking.tableSelected)){
+      && !clickedElement.classList.contains('booked')
+      && !clickedElement.classList.contains(classNames.booking.tableSelected)){
       clickedElement.classList.add(classNames.booking.tableSelected);
       const tableId = event.target.getAttribute(settings.booking.tableIdAttribute);
       thisBooking.tableSelected = tableId;
-      console.log('click');
-      console.log('id', tableId);
     } else {
       clickedElement.classList.remove(classNames.booking.tableSelected);
     }
@@ -237,11 +225,11 @@ class Booking {
     const url = settings.db.url + '/' + settings.db.bookings;
 
     const payload = {
-      date: thisBooking.dom.datePicker.value,
-      hour: thisBooking.dom.hourPicker.value,
+      date: thisBooking.dom.dateInputValue.value,
+      hour: thisBooking.dom.hourInputValue.value,
       table: thisBooking.tableSelected,
-      duration: thisBooking.dom.duration.value,
-      ppl: thisBooking.dom.people.value,
+      duration: thisBooking.hoursWidget.value,
+      ppl: thisBooking.peopleWidget.value,
       starters: [],
       phone: thisBooking.dom.phone.value,
       adress: thisBooking.dom.adress.value,
@@ -267,9 +255,10 @@ class Booking {
       })
       .then(function(){
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+      })
+      .catch(function(){
       });
 
-    console.log('thisBooking.booked', thisBooking.booked);
   }
 }
 export default Booking;

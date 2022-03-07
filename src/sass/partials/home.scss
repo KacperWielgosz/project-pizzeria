@@ -1,3 +1,5 @@
+@import './settings';
+
 
 .book-and-order{
   padding-top: 36px;
@@ -5,10 +7,12 @@
   width: 100%;
   justify-content: space-between;
 }
+
 .box {
   position: relative;
   display: inline-block;
 }
+
 .box-text {
   position: absolute;
   top: 50%;
@@ -33,9 +37,9 @@
 
   &:hover {
     p {
-     opacity: 1;
-     transition-duration: 1s;
-     font-family: $font-text;
+      opacity: 1;
+      transition-duration: 1s;
+      font-family: $font-text;
     }
 
     h1 {
@@ -79,6 +83,7 @@
 .main-carousel {
   margin: 36px 0px;
 }
+
 .carousel-cell{
   display: flex;
   flex-wrap: nowrap;
@@ -86,6 +91,7 @@
   justify-content: space-between;
   padding: 36px;
 }
+
 .cell-image{
   flex: 1;
 
@@ -95,6 +101,7 @@
     height: 200px;
   }
 }
+
 .cell-text{
   padding: 0px 0px 0px 50px;
 
@@ -139,6 +146,7 @@
       opacity: 0.7;
       transition-duration: 1s;
     }
+
     i {
       font-size: 20px;
       transition-duration: 1s;
@@ -167,7 +175,7 @@
 
 .footer{
   padding: 0px 0px 36px 0px;
-  
+
   a{
     font-family: $font-text;
     padding: 10px;
@@ -175,7 +183,7 @@
     color: $color-main;
 
     &:hover{
-      color:$color-danger;
+      color: $color-danger;
     }
   }
 }
