@@ -7,7 +7,7 @@ class BaseWidget{
 
     thisWidget.correctValue = initialValue;
   }
-
+ 
   get value(){
     const thisWidget = this;
 

@@ -8,7 +8,7 @@ class Home {
     thisHome.render(element);
     thisHome.initLinks();
   }
-
+ 
   render(element){
     const thisHome = this;
     const generatedHTML = templates.homePage();

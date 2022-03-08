@@ -6,7 +6,7 @@ import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import HourPicker from './HourPicker.js';
 import DatePicker from './DatePicker.js';
-
+ 
 class Booking {
   constructor(element) {
     const thisBooking = this;
