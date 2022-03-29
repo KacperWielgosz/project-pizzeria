@@ -6,7 +6,7 @@ import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import HourPicker from './HourPicker.js';
 import DatePicker from './DatePicker.js';
- 
+
 class Booking {
   constructor(element) {
     const thisBooking = this;
@@ -119,8 +119,7 @@ class Booking {
     let allAvailable = false;
 
     if(typeof thisBooking.booked[thisBooking.date] === 'undefined'
-      || typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined'
-    ){
+      || typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined'){
       allAvailable = true;
     }
 
@@ -130,8 +129,7 @@ class Booking {
         tableId = parseInt(tableId);
       }
       if(!allAvailable
-        && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
-      ){
+        && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1){
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
@@ -176,10 +174,8 @@ class Booking {
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
     thisBooking.dom.peopleAmount.addEventListener('click', function(event){
-      //console.log('people clicked')
     });
     thisBooking.dom.hoursAmount.addEventListener('click', function(event){
-      //console.log('hours clicked')
     });
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
@@ -202,9 +198,9 @@ class Booking {
     if (clickedElement.classList.contains('table')
       && !clickedElement.classList.contains('booked')
       && !clickedElement.classList.contains(classNames.booking.tableSelected)){
-      clickedElement.classList.add(classNames.booking.tableSelected);
-      const tableId = event.target.getAttribute(settings.booking.tableIdAttribute);
-      thisBooking.tableSelected = tableId;
+        clickedElement.classList.add(classNames.booking.tableSelected);
+        const tableId = event.target.getAttribute(settings.booking.tableIdAttribute);
+        thisBooking.tableSelected = tableId;
     } else {
       clickedElement.classList.remove(classNames.booking.tableSelected);
     }
@@ -257,6 +253,8 @@ class Booking {
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
       })
       .catch(function(){
+        alert('Serwer not responding');
+        throw new Error('Error communicating with serwer');
       });
 
   }
